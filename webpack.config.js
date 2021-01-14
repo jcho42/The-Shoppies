@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
@@ -5,7 +7,7 @@ module.exports = {
   mode: isDev ? 'development' : 'production',
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: `./${isDev ? 'public' : 'build'}/bundle.js`
   },
   devtool: 'source-map',
   devServer: {
@@ -28,5 +30,13 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      // injects bundle.js to our new index.html
+      inject: true,
+      // copys the content of the existing index.html to the new /build index.html
+      template:  './public/index.html',
+    }),
+  ]
 }
