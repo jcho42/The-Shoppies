@@ -37,6 +37,7 @@ module.exports = {
       inject: true,
       // copys the content of the existing index.html to the new /build index.html
       template:  './public/index.html',
+      filename: './build/index.html'
     }),
   ]
 }
