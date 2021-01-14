@@ -36,8 +36,8 @@ module.exports = {
       // injects bundle.js to our new index.html
       inject: true,
       // copys the content of the existing index.html to the new /build index.html
-      template:  './public/index.html',
-      filename: './build/index.html'
+      template:  './index.html',
+      filename: `./${isDev ? 'public' : 'build'}/index.html`
     }),
   ]
 }
