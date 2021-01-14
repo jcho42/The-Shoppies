@@ -1,8 +1,9 @@
 
 // Action types
 const GET_MOVIES = 'GET_MOVIES'
-const ADD_MOVIE = 'ADD_MOVIE'
 const UPDATE_SEARCH = 'UPDATE_SEARCH'
+const SET_NOMS = 'SET_NOMS'
+const ADD_MOVIE = 'ADD_MOVIE'
 
 // Action creator
 const getMovies = (movies) => ({
@@ -10,14 +11,19 @@ const getMovies = (movies) => ({
   movies
 })
 
-export const addMovies = (movie) => ({
-  type: ADD_MOVIE,
-  movie
-})
-
 export const updateSearch = (value) => ({
   type: UPDATE_SEARCH,
   value
+})
+
+const setNoms = (noms) => ({
+  type:SET_NOMS,
+  noms
+})
+
+const addMovie = (movie) => ({
+  type: ADD_MOVIE,
+  movie
 })
 
 // Thunk creator
@@ -31,7 +37,29 @@ export const getFromOMDB = (searchValue) => async dispatch => {
       if(resJson.Search) {
         dispatch(getMovies(resJson.Search))
       }
+    } else {
+      dispatch(getMovies([]))
     }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getNoms = () => async dispatch => {
+  try {
+    const nominations = JSON.parse(localStorage.getItem('nominations'))
+    if (nominations) {
+      dispatch(setNoms(nominations))
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const addToNoms = (movie) => async (dispatch, getState) => {
+  try {
+    dispatch(addMovie(movie))
+    localStorage.setItem('nominations', JSON.stringify(getState().nominations))
   } catch (error) {
     console.error(error)
   }
@@ -39,17 +67,20 @@ export const getFromOMDB = (searchValue) => async dispatch => {
 
 const initialState = {
   movies: [],
-  search: ''
+  search: '',
+  nominations: []
 }
 
 export default function reducer (state = initialState, action) {
   switch(action.type) {
     case GET_MOVIES:
       return {...state, movies: action.movies}
-    case ADD_MOVIE:
-      return {...state, movies: [...state.movies, action.movie]}
-    case UPDATE_SEARCH:
-      return {...state, search: action.value}
+      case UPDATE_SEARCH:
+        return {...state, search: action.value}
+      case SET_NOMS:
+        return {...state, nominations: action.noms}
+      case ADD_MOVIE:
+        return {...state, nominations: [...state.nominations, action.movie]}
     default:
       return state
   }

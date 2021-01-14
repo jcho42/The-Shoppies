@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { addToNoms } from '../redux/reducer'
 
-const MovieTiles = ({movies}) => {
+const MovieTiles = ({movies, add}) => {
   return (
     <div>
       {movies.map(movie => (
-        <img key={movie.imdbID} src={movie.Poster} />
+        <img onClick={() => add(movie)} key={movie.imdbID} src={movie.Poster} />
       ))}
     </div>
   )
@@ -14,5 +15,8 @@ const MovieTiles = ({movies}) => {
 const mapState = (state) => ({
   movies: state.movies,
 })
+const mapDispatch = (dispatch) => ({
+  add: (movie) => dispatch(addToNoms(movie))
+})
 
-export default connect(mapState)(MovieTiles)
+export default connect(mapState, mapDispatch)(MovieTiles)
