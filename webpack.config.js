@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  entry: './app/main.js',
+  entry: ['@babel/polyfill', './app/main.js'],
   mode: isDev ? 'development' : 'production',
   output: {
     path: __dirname,

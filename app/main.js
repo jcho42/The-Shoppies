@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './redux/store'
+import { App } from './components'
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>{process.env.NODE_ENV}</div>
+    <App/>
   </Provider>,
   document.getElementById('app')
 )
