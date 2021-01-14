@@ -33,8 +33,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      // injects bundle.js to our new index.html
-      inject: true,
+      // disable injection of bundle.js to our new index.html
+      inject: false,
       // copys the content of the existing index.html to the new /build index.html
       template:  './index.html',
       filename: `./${isDev ? 'public' : 'build'}/index.html`
