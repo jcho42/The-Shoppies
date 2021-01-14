@@ -24,7 +24,7 @@ export const updateSearch = (value) => ({
 export const getFromOMDB = (searchValue) => async dispatch => {
   try {
     if (searchValue) {
-      const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=65162c51`
+      const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=65162c51`
       const res = await fetch(url)
       const resJson = await res.json()
 
