@@ -1,9 +1,26 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { connect } from 'react-redux'
+import { updateSearch } from '../redux/reducer'
 
-const Header = () => {
+const Header = ({searchValue, update}) => {
   return (
-    <h2>The Shoppies</h2>
+    <div>
+      <h2>The Shoppies</h2>
+      <input
+        name="search"
+        value={searchValue}
+        onChange={(evt) => update(evt.target.value)}
+        placeholder="Type to search..."
+      ></input>
+    </div>
   )
 }
 
-export default Header
+const mapState = (state) => ({
+  searchValue: state.search
+})
+const mapDispatch = (dispatch) => ({
+  update: (value) => dispatch(updateSearch(value))
+})
+
+export default connect(mapState, mapDispatch)(Header)

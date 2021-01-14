@@ -5,7 +5,7 @@ const MovieTiles = ({movies}) => {
   return (
     <div>
       {movies.map(movie => (
-        <img src={movie.Poster} />
+        <img key={movie.imdbID} src={movie.Poster} />
       ))}
     </div>
   )

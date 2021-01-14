@@ -2,6 +2,7 @@
 // Action types
 const GET_MOVIES = 'GET_MOVIES'
 const ADD_MOVIE = 'ADD_MOVIE'
+const UPDATE_SEARCH = 'UPDATE_SEARCH'
 
 // Action creator
 const getMovies = (movies) => ({
@@ -14,16 +15,22 @@ export const addMovies = (movie) => ({
   movie
 })
 
-// Thunk creator
-export const getFromOMDB = () => async dispatch => {
-  try {
-    console.log("In thunk!!!!!!!!!!!")
-    const url = `http://www.omdbapi.com/?s=star wars&apikey=65162c51`
-    const res = await fetch(url)
-    const resJson = await res.json()
+export const updateSearch = (value) => ({
+  type: UPDATE_SEARCH,
+  value
+})
 
-    if(resJson.Search) {
-      dispatch(getMovies(resJson.Search))
+// Thunk creator
+export const getFromOMDB = (searchValue) => async dispatch => {
+  try {
+    if (searchValue) {
+      const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=65162c51`
+      const res = await fetch(url)
+      const resJson = await res.json()
+
+      if(resJson.Search) {
+        dispatch(getMovies(resJson.Search))
+      }
     }
   } catch (error) {
     console.error(error)
@@ -31,7 +38,8 @@ export const getFromOMDB = () => async dispatch => {
 }
 
 const initialState = {
-  movies: []
+  movies: [],
+  search: ''
 }
 
 export default function reducer (state = initialState, action) {
@@ -40,6 +48,8 @@ export default function reducer (state = initialState, action) {
       return {...state, movies: action.movies}
     case ADD_MOVIE:
       return {...state, movies: [...state.movies, action.movie]}
+    case UPDATE_SEARCH:
+      return {...state, search: action.value}
     default:
       return state
   }

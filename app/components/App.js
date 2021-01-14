@@ -3,10 +3,10 @@ import { connect } from 'react-redux'
 import { Header, MovieTiles } from './index'
 import { getFromOMDB } from '../redux/reducer'
 
-const App = ({fetchMovies}) => {
+const App = ({fetchMovies, searchValue}) => {
   useEffect(() => {
-    fetchMovies()
-  }, [])
+    fetchMovies(searchValue)
+  }, [searchValue])
 
   return (
     <div>
@@ -17,8 +17,11 @@ const App = ({fetchMovies}) => {
   )
 }
 
+const mapState = (state) => ({
+  searchValue: state.search
+})
 const mapDispatch = (dispatch) => ({
-  fetchMovies: () => dispatch(getFromOMDB())
+  fetchMovies: (searchValue) => dispatch(getFromOMDB(searchValue))
 })
 
-export default connect(null, mapDispatch)(App)
+export default connect(mapState, mapDispatch)(App)
