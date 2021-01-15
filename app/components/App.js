@@ -13,8 +13,7 @@ const App = ({fetchMovies, searchValue, fetchNoms, showList}) => {
   }, [])
 
   return (
-    <div>
-      <div>{process.env.NODE_ENV}</div>
+    <div className="bg-grey-900 min-h-screen text-gray-100">
       <Header />
       <MovieTiles />
       {showList && <NomsList />}
