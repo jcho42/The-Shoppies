@@ -4,6 +4,7 @@ const GET_MOVIES = 'GET_MOVIES'
 const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const SET_NOMS = 'SET_NOMS'
 const ADD_MOVIE = 'ADD_MOVIE'
+const TOGGLE_LIST = 'TOGGLE_LIST'
 
 // Action creator
 const getMovies = (movies) => ({
@@ -24,6 +25,10 @@ const setNoms = (noms) => ({
 const addMovie = (movie) => ({
   type: ADD_MOVIE,
   movie
+})
+
+export const toggleList = () => ({
+  type: TOGGLE_LIST
 })
 
 // Thunk creator
@@ -68,7 +73,8 @@ export const addToNoms = (movie) => async (dispatch, getState) => {
 const initialState = {
   movies: [],
   search: '',
-  nominations: []
+  nominations: [],
+  show: false
 }
 
 export default function reducer (state = initialState, action) {
@@ -81,6 +87,8 @@ export default function reducer (state = initialState, action) {
         return {...state, nominations: action.noms}
       case ADD_MOVIE:
         return {...state, nominations: [...state.nominations, action.movie]}
+      case TOGGLE_LIST:
+        return {...state, show: !state.show}
     default:
       return state
   }

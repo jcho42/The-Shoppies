@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
-import { updateSearch } from '../redux/reducer'
+import { updateSearch, toggleList } from '../redux/reducer'
 
-const Header = ({searchValue, update}) => {
+const Header = ({searchValue, update, toggle}) => {
   return (
     <div>
       <h2>The Shoppies</h2>
@@ -11,7 +11,8 @@ const Header = ({searchValue, update}) => {
         value={searchValue}
         onChange={(evt) => update(evt.target.value)}
         placeholder="Type to search..."
-      ></input>
+      />
+      <button onClick={toggle}>Nominations List</button>
     </div>
   )
 }
@@ -20,7 +21,8 @@ const mapState = (state) => ({
   searchValue: state.search
 })
 const mapDispatch = (dispatch) => ({
-  update: (value) => dispatch(updateSearch(value))
+  update: (value) => dispatch(updateSearch(value)),
+  toggle: () => dispatch(toggleList())
 })
 
 export default connect(mapState, mapDispatch)(Header)
