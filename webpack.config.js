@@ -9,10 +9,10 @@ module.exports = {
     path: __dirname,
     filename: `./${isDev ? 'public' : 'build'}/bundle.js`
   },
-  devtool: 'source-map',
-  devServer: {
+  devtool: isDev ? 'source-map' : undefined,
+  devServer: isDev ? {
     contentBase: './public',
-  },
+  } : undefined,
   module: {
     rules: [
       {
@@ -27,6 +27,7 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
+          'postcss-loader'
         ]
       }
     ]
