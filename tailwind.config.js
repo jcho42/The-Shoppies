@@ -14,11 +14,17 @@ module.exports = {
       },
       height: {
         '9/10': '90%'
+      },
+      width: {
+        leftSide: 'calc(100vw - 24rem)'
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['disabled'],
+      textColor: ['disabled'],
+    },
   },
   plugins: [],
 }

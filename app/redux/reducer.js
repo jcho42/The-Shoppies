@@ -1,3 +1,4 @@
+import { movieSeries } from '../data/movieSeries'
 
 // Action types
 const GET_MOVIES = 'GET_MOVIES'
@@ -6,6 +7,8 @@ const SET_NOMS = 'SET_NOMS'
 const ADD_MOVIE = 'ADD_MOVIE'
 const TOGGLE_LIST = 'TOGGLE_LIST'
 const REMOVE_MOVIE = 'REMOVE_MOVIE'
+const TOGGLE_BANNER = 'TOGGLE_BANNER'
+const CLEAR_SEARCH = 'CLEAR_SEARCH'
 
 // Action creator
 const getMovies = (movies) => ({
@@ -37,11 +40,19 @@ const removeMovie = (movie) => ({
   movie
 })
 
+export const toggleBanner = () => ({
+  type: TOGGLE_BANNER
+})
+
+export const clearSearch = () => ({
+  type: CLEAR_SEARCH
+})
+
 // Thunk creator
 export const getFromOMDB = (searchValue) => async dispatch => {
   try {
     if (searchValue) {
-      const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=65162c51`
+      const url = `https://www.omdbapi.com/?s=${searchValue}&type=movie&apikey=65162c51`
       const res = await fetch(url)
       const resJson = await res.json()
 
@@ -49,7 +60,7 @@ export const getFromOMDB = (searchValue) => async dispatch => {
         dispatch(getMovies(resJson.Search))
       }
     } else {
-      dispatch(getMovies([]))
+      dispatch(setInitalMovieSeries())
     }
   } catch (error) {
     console.error(error)
@@ -71,6 +82,10 @@ export const addToNoms = (movie) => async (dispatch, getState) => {
   try {
     dispatch(addMovie(movie))
     localStorage.setItem('nominations', JSON.stringify(getState().nominations))
+
+    if (getState().nominations.length === 5) {
+      dispatch(toggleBanner())
+    }
   } catch (error) {
     console.error(error)
   }
@@ -85,11 +100,22 @@ export const removeFromNoms = (movie) => async (dispatch, getState) => {
   }
 }
 
+export const setInitalMovieSeries = () => async dispatch => {
+  try {
+    const randomIdx = Math.floor(Math.random() * movieSeries.length)
+    dispatch(getFromOMDB(movieSeries[randomIdx]))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+// Reducer
 const initialState = {
   movies: [],
   search: '',
   nominations: [],
-  show: false
+  showNoms: false,
+  showBanner: false
 }
 
 export default function reducer (state = initialState, action) {
@@ -103,10 +129,14 @@ export default function reducer (state = initialState, action) {
       case ADD_MOVIE:
         return {...state, nominations: [...state.nominations, action.movie]}
       case TOGGLE_LIST:
-        return {...state, show: !state.show}
+        return {...state, showNoms: !state.showNoms}
       case REMOVE_MOVIE:
         const newNoms = state.nominations.filter(movie => movie.imdbID !== action.movie.imdbID)
         return {...state, nominations: newNoms}
+      case TOGGLE_BANNER:
+        return {...state, showBanner: !state.showBanner}
+      case CLEAR_SEARCH:
+        return {...state, search: ''}
     default:
       return state
   }

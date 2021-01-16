@@ -1,0 +1,23 @@
+export const movieSeries = [
+  "avengers",
+  "lord of the rings",
+  "mission",
+  "x-men",
+  "fast",
+  "harry potter",
+  "toy story",
+  "rocky",
+  "star wars",
+  "pirates",
+  "jurassic",
+  "hunger",
+  "iron man",
+  "indiana",
+  "die hard",
+  "transformers",
+  "alien",
+  "matrix",
+  "men in black",
+  "spider man",
+  "terminator"
+]

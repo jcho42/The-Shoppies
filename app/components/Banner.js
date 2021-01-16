@@ -1,0 +1,54 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { toggleBanner } from '../redux/reducer';
+import { IconContext } from 'react-icons';
+import { IoClose } from 'react-icons/io5';
+
+const Banner = ({ toggle, noms }) => {
+  const preventPropagation = (e) => {
+    e.stopPropagation();
+  };
+
+  return (
+    <div
+      className="fixed h-screen inset-0 z-20 bg-black bg-opacity-50"
+      onClick={toggle}
+    >
+      <div
+        className="absolute h-1/3 top-0 w-full bg-black bg-opacity-90 py-5 px-40 flex justify-between"
+        onClick={preventPropagation}
+      >
+        <div>
+          <h3 className="text-2xl mb-5">Congratulations!</h3>
+          <p className="text-xl text-yellow-500 mb-2">
+            You have nominated the following 5 movies for the Shoppie award:
+          </p>
+          <ul className="list-disc list-inside">
+            {noms.map((movie) => (
+              <li key={movie.imdbID}>
+                {movie.Title} ({movie.Year})
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="border border-grey-100 rounded p-0.5 hover:bg-yellow-500 self-start">
+          <IconContext.Provider
+            value={{ color: '#F3F4F6', size: 30 }}
+          >
+            <div className="cursor-pointer" onClick={toggle}>
+              <IoClose />
+            </div>
+          </IconContext.Provider>
+        </div>
+      </div>
+    </div>
+  );
+};
+const mapState = (state) => ({
+  noms: state.nominations,
+});
+const mapDispatch = (dispatch) => ({
+  toggle: () => dispatch(toggleBanner()),
+});
+
+export default connect(mapState, mapDispatch)(Banner);
