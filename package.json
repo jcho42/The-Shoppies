@@ -4,9 +4,10 @@
   "description": "shopify-intern-challenge",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV='production' npm run build:css & webpack",
+    "build": "npm run build:css-prod && webpack",
     "start-dev": "npm run build:css & NODE_ENV='development' webpack -w & NODE_ENV='development' webpack serve --open",
-    "build:css": "postcss app/css/tailwind.css -o app/css/main.css"
+    "build:css": "postcss app/css/tailwind.css -o app/css/main.css",
+    "build:css-prod": "NODE_ENV='production' postcss app/css/tailwind.css -o app/css/main.css"
   },
   "author": "",
   "license": "ISC",
