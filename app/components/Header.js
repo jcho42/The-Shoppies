@@ -4,7 +4,7 @@ import { updateSearch, toggleList } from '../redux/reducer';
 
 const Header = ({ searchValue, update, toggle }) => {
   return (
-    <div className="p-5 px-20 bg-black bg-opacity-90 sticky top-0 flex justify-between items-center">
+    <div className="p-5 px-20 bg-black bg-opacity-90 sticky top-0 flex justify-between items-center z-10">
       <div>
         <h2 className="text-yellow-500 text-2xl">The Shoppies</h2>
         <p>Choose 5 movies to nominate</p>
