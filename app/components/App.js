@@ -14,9 +14,9 @@ const App = ({fetchMovies, searchValue, fetchNoms, showList}) => {
 
   return (
     <div className="bg-grey-900 min-h-screen text-gray-100">
+      {showList && <NomsList />}
       <Header />
       <MovieTiles />
-      {showList && <NomsList />}
     </div>
   )
 }

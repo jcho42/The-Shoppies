@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       colors: {
         grey: colors.trueGray
+      },
+      height: {
+        '9/10': '90%'
       }
     },
   },

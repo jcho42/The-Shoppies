@@ -5,6 +5,7 @@ const UPDATE_SEARCH = 'UPDATE_SEARCH'
 const SET_NOMS = 'SET_NOMS'
 const ADD_MOVIE = 'ADD_MOVIE'
 const TOGGLE_LIST = 'TOGGLE_LIST'
+const REMOVE_MOVIE = 'REMOVE_MOVIE'
 
 // Action creator
 const getMovies = (movies) => ({
@@ -29,6 +30,11 @@ const addMovie = (movie) => ({
 
 export const toggleList = () => ({
   type: TOGGLE_LIST
+})
+
+const removeMovie = (movie) => ({
+  type: REMOVE_MOVIE,
+  movie
 })
 
 // Thunk creator
@@ -70,6 +76,15 @@ export const addToNoms = (movie) => async (dispatch, getState) => {
   }
 }
 
+export const removeFromNoms = (movie) => async (dispatch, getState) => {
+  try {
+    dispatch(removeMovie(movie))
+    localStorage.setItem('nominations', JSON.stringify(getState().nominations))
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 const initialState = {
   movies: [],
   search: '',
@@ -89,6 +104,9 @@ export default function reducer (state = initialState, action) {
         return {...state, nominations: [...state.nominations, action.movie]}
       case TOGGLE_LIST:
         return {...state, show: !state.show}
+      case REMOVE_MOVIE:
+        const newNoms = state.nominations.filter(movie => movie.imdbID !== action.movie.imdbID)
+        return {...state, nominations: newNoms}
     default:
       return state
   }
