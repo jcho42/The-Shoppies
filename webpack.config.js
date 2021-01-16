@@ -12,7 +12,7 @@ module.exports = {
   devtool: isDev ? 'source-map' : undefined,
   devServer: isDev ? {
     contentBase: './public',
-  } : undefined,
+  } : {},
   module: {
     rules: [
       {
