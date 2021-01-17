@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { Header, MovieTiles, NomsList, Banner } from './index';
 import { getFromOMDB, getNoms, setInitalMovieSeries } from '../redux/reducer';
@@ -9,14 +9,18 @@ const App = ({
   fetchNoms,
   setInitialMovies,
 }) => {
-  useEffect(() => {
-    fetchMovies(searchValue);
-  }, [searchValue]);
+
+  const isInitial = useRef(true);
 
   useEffect(() => {
-    fetchNoms();
-    setInitialMovies();
-  }, []);
+    if (isInitial.current) {
+      fetchNoms();
+      setInitialMovies();
+      isInitial.current = false;
+    } else {
+      fetchMovies(searchValue);
+    }
+  }, [searchValue]);
 
   return (
     <div className="bg-grey-900 min-h-screen text-gray-100">
