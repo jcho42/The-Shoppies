@@ -34,3 +34,36 @@
 .nomsListLeft-leave.nomsListLeft-leave-active {
   @apply transition bg-opacity-0 duration-500 ease-in-out;
 }
+
+/* Banner transitions */
+.banner-enter {
+  @apply transform -translate-y-full;
+}
+
+.banner-enter.banner-enter-active {
+  @apply transition-transform transform translate-y-0 duration-500 ease-in-out;
+}
+
+.banner-leave {
+  @apply transform translate-y-0;
+}
+
+.banner-leave.banner-leave-active {
+  @apply transition-transform transform -translate-y-full duration-500 ease-in-out;
+}
+
+.bannerBot-enter {
+  @apply bg-opacity-0;
+}
+
+.bannerBot-enter.bannerBot-enter-active {
+  @apply transition bg-opacity-50 duration-500 ease-in-out;
+}
+
+.bannerBot-leave {
+  @apply bg-opacity-50;
+}
+
+.bannerBot-leave.bannerBot-leave-active {
+  @apply transition bg-opacity-0 duration-500 ease-in-out;
+}

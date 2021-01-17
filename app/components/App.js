@@ -7,7 +7,6 @@ const App = ({
   fetchMovies,
   searchValue,
   fetchNoms,
-  showBanner,
   setInitialMovies,
 }) => {
   useEffect(() => {
@@ -24,14 +23,13 @@ const App = ({
       <Header />
       <MovieTiles />
       <NomsList />
-        {showBanner && <Banner />}
+      <Banner />
     </div>
   );
 };
 
 const mapState = (state) => ({
   searchValue: state.search,
-  showBanner: state.showBanner,
 });
 const mapDispatch = (dispatch) => ({
   fetchMovies: (searchValue) => dispatch(getFromOMDB(searchValue)),
