@@ -17,7 +17,10 @@ module.exports = {
       },
       width: {
         leftSide: 'calc(100vw - 24rem)'
-      }
+      },
+      zIndex: {
+        '-10': '-10',
+       }
     },
   },
   variants: {

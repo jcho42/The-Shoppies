@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* NomsList transitions */
+.nomsList-enter {
+  @apply transform translate-x-full;
+}
+
+.nomsList-enter.nomsList-enter-active {
+  @apply transition-transform transform translate-x-0 duration-500 ease-in-out;
+}
+
+.nomsList-leave {
+  @apply transform translate-x-0;
+}
+
+.nomsList-leave.nomsList-leave-active {
+  @apply transition-transform transform translate-x-full duration-500 ease-in-out;
+}
+
+.nomsListLeft-enter {
+  @apply bg-opacity-0;
+}
+
+.nomsListLeft-enter.nomsListLeft-enter-active {
+  @apply transition bg-opacity-50 duration-500 ease-in-out;
+}
+
+.nomsListLeft-leave {
+  @apply bg-opacity-50;
+}
+
+.nomsListLeft-leave.nomsListLeft-leave-active {
+  @apply transition bg-opacity-0 duration-500 ease-in-out;
+}

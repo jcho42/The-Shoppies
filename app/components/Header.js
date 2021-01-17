@@ -1,21 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { updateSearch, toggleList, clearSearch } from '../redux/reducer';
 import { IconContext } from 'react-icons';
 import { IoSearch, IoClose } from 'react-icons/io5';
+import { FaTrophy } from 'react-icons/fa';
 
 const Header = ({ searchValue, update, toggle, clear }) => {
   return (
-    <div className="p-5 px-20 bg-black bg-opacity-90 sticky top-0 flex justify-between items-center z-10">
+    <div className="p-5 px-20 bg-black bg-opacity-90 sticky top-0 flex justify-between items-center z-20">
       <div>
-        <h2 className="text-yellow-500 text-2xl">The Shoppies</h2>
+        <div className="flex items-center">
+          <div className="p-2">
+            <IconContext.Provider value={{ color: '#F59E0B', size: 25 }}>
+              <div>
+                <FaTrophy />
+              </div>
+            </IconContext.Provider>
+          </div>
+          <h2 className="text-yellow-500 text-2xl">The Shoppies</h2>
+        </div>
         <p>Choose 5 movies to nominate for the Shoppie award</p>
       </div>
       <div className="flex">
         <div className="flex">
           <div className="border border-grey-100 bg-grey-900 border-r-0 p-1">
             <IconContext.Provider value={{ color: '#F3F4F6', size: 25 }}>
-              <label for="searchbar" className="cursor-pointer">
+              <label htmlFor="searchbar" className="cursor-pointer">
                 <IoSearch />
               </label>
             </IconContext.Provider>
@@ -30,14 +40,14 @@ const Header = ({ searchValue, update, toggle, clear }) => {
           />
           <div onClick={clear} className="border border-grey-100 bg-grey-900 border-l-0 p-1 mr-10">
             <IconContext.Provider value={{ color: '#F3F4F6', size: 25 }}>
-              <label for="searchbar" className="cursor-pointer">
+              <label htmlFor="searchbar" className="cursor-pointer">
                 <IoClose />
               </label>
             </IconContext.Provider>
           </div>
         </div>
         <button
-          className="border border-gray-100 p-1 rounded focus:outline-none hover:bg-yellow-500 hover:text-black"
+          className="border border-gray-100 p-1 rounded focus:outline-none hover:bg-yellow-500 hover:text-black transition duration-500 ease-in-out"
           onClick={toggle}
         >
           Nominations List

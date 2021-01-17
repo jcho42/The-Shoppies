@@ -31,7 +31,7 @@ const Banner = ({ toggle, noms }) => {
             ))}
           </ul>
         </div>
-        <div className="border border-grey-100 rounded p-0.5 hover:bg-yellow-500 self-start">
+        <div className="border border-grey-100 rounded p-0.5 hover:bg-yellow-500 self-start transition duration-500 ease-in-out">
           <IconContext.Provider
             value={{ color: '#F3F4F6', size: 30 }}
           >

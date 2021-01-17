@@ -25,7 +25,7 @@ const MovieTiles = ({ movies, add, noms }) => {
               <button
                 onClick={() => add(movie)}
                 disabled={disableButton(movie)}
-                className="text-sm p-1 border border-grey-100 rounded hover:bg-yellow-500 hover:text-black focus:outline-none disabled:bg-grey-500 disabled:text-grey-100"
+                className="text-sm p-1 border border-grey-100 rounded hover:bg-yellow-500 hover:text-black focus:outline-none disabled:bg-grey-500 disabled:text-grey-100 transition duration-500 ease-in-out"
               >
                 Nominate
               </button>
