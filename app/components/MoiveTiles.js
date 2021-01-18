@@ -12,11 +12,16 @@ const MovieTiles = ({ movies, add, noms }) => {
     return false
   }
 
+  const imgError = (e) => {
+    e.target.onerror = null
+    e.target.src = "https://i.pinimg.com/originals/6c/c4/88/6cc488d74b68e2cd131fd11f69f03e62.jpg"
+  }
+
   return (
     <div className="flex flex-wrap">
       {movies.map((movie) => (
         <div key={movie.imdbID} className="relative w-52 m-5">
-          <img className="h-80" src={movie.Poster} />
+          <img className="h-80" src={movie.Poster} onError={imgError} />
           <div className="absolute inset-0 h-full w-full opacity-0 hover:opacity-100">
             <div className="absolute bottom-0 h-1/3 w-full bg-black bg-opacity-80 px-2 flex flex-col justify-center items-center text-center">
               <h3 className="my-1 text-sm">
