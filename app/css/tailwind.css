@@ -67,3 +67,38 @@
 .bannerBot-leave.bannerBot-leave-active {
   @apply transition bg-opacity-0 duration-500 ease-in-out;
 }
+
+/* MoiveList transitions */
+.movieList-enter {
+  @apply opacity-0;
+}
+
+.movieList-enter.movieList-enter-active {
+  @apply opacity-100;
+}
+
+/* Zoom effect */
+.zoom {
+  @apply transition transform ease-in-out duration-500;
+}
+
+.zoom:hover {
+  @apply scale-110;
+}
+
+/* Noms transitions */
+.noms-enter {
+  @apply transform translate-x-full;
+}
+
+.noms-enter.noms-enter-active {
+  @apply transition-transform transform translate-x-0 duration-500 ease-in-out;
+}
+
+.noms-leave {
+  @apply transform translate-x-0;
+}
+
+.noms-leave.noms-leave-active {
+  @apply transition-transform transform translate-x-full duration-500 ease-in-out;
+}
