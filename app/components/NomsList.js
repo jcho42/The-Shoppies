@@ -77,12 +77,12 @@ const NomsList = ({ noms, toggle, remove, showList }) => {
                 {noms.map((movie) => (
                   <div key={movie.imdbID} className="flex h-1/5 py-2">
                     <img className="object-contain w-1/3" src={movie.Poster} />
-                    <div className="flex flex-col justify-between place-items-start">
+                    <div className="flex flex-col justify-evenly place-items-start">
                       <p>
                         {movie.Title} ({movie.Year})
                       </p>
                       <button
-                        className="text-sm p-1 mb-2 border border-grey-100 rounded hover:bg-red-500 focus:outline-none m-2 transition duration-500 ease-in-out"
+                        className="text-sm p-1 border border-grey-100 rounded hover:bg-red-500 focus:outline-none m-2 transition duration-500 ease-in-out"
                         onClick={() => remove(movie)}
                       >
                         Remove
