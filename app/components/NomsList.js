@@ -8,11 +8,12 @@ import { CSSTransitionGroup } from 'react-transition-group';
 const NomsList = ({ noms, toggle, remove, showList }) => {
   const [zIdx, setzIdx] = useState('-z-10');
   const [nomsAnime, setNomsAnime] = useState(false);
-  const isInitial = useRef(true);
+  const isInitialList = useRef(true);
+  const isInitialNoms = useRef(true);
 
   useEffect(() => {
-    if (isInitial.current) {
-      isInitial.current = false;
+    if (isInitialList.current) {
+      isInitialList.current = false;
     } else {
       if (zIdx === '-z-10') {
         setzIdx('z-20');
@@ -23,10 +24,14 @@ const NomsList = ({ noms, toggle, remove, showList }) => {
   }, [showList]);
 
   useEffect(() => {
-    if (!noms.length) {
-      setTimeout(() => setNomsAnime(true), 500);
+    if (isInitialNoms.current) {
+      isInitialNoms.current = false;
     } else {
-      setNomsAnime(false)
+      if (!noms.length) {
+        setTimeout(() => setNomsAnime(true), 500);
+      } else {
+        setNomsAnime(false)
+      }
     }
   }, [noms])
 
@@ -72,12 +77,12 @@ const NomsList = ({ noms, toggle, remove, showList }) => {
                 {noms.map((movie) => (
                   <div key={movie.imdbID} className="flex h-1/5 py-2">
                     <img className="object-contain w-1/3" src={movie.Poster} />
-                    <div>
+                    <div className="flex flex-col justify-between place-items-start">
                       <p>
                         {movie.Title} ({movie.Year})
                       </p>
                       <button
-                        className="text-sm p-1 border border-grey-100 rounded hover:bg-red-500 focus:outline-none m-2 transition duration-500 ease-in-out"
+                        className="text-sm p-1 mb-2 border border-grey-100 rounded hover:bg-red-500 focus:outline-none m-2 transition duration-500 ease-in-out"
                         onClick={() => remove(movie)}
                       >
                         Remove
