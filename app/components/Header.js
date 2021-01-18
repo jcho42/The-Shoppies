@@ -29,7 +29,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
         <p>Choose 5 movies to nominate for the Shoppie award</p>
       </div>
       <div className="flex">
-        <div className="flex">
+        <div className="flex item">
           <div className="border border-grey-100 bg-grey-900 border-r-0 p-1">
             <IconContext.Provider value={{ color: '#F3F4F6', size: 25 }}>
               <label htmlFor="searchbar" className="cursor-pointer">
