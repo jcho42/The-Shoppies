@@ -51,7 +51,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
           >
             <IconContext.Provider value={{ color: '#F3F4F6', size: 25 }}>
               <label htmlFor="searchbar" className="cursor-pointer">
-                <IoClose />
+                <IoClose className={`${searchValue ? "opacity-100" : "opacity-0"}`} />
               </label>
             </IconContext.Provider>
           </div>
