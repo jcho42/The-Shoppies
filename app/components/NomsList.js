@@ -19,9 +19,16 @@ const NomsList = ({ noms, toggle, remove, showList }) => {
       } else {
         setTimeout(() => setzIdx('-z-10'), 500);
       }
-      setTimeout(() => setNomsAnime(!nomsAnime), 500);
     }
   }, [showList]);
+
+  useEffect(() => {
+    if (!noms.length) {
+      setTimeout(() => setNomsAnime(true), 500);
+    } else {
+      setNomsAnime(false)
+    }
+  }, [noms])
 
   return (
     <div className={`fixed inset-0 h-screen ${zIdx}`}>
@@ -55,7 +62,7 @@ const NomsList = ({ noms, toggle, remove, showList }) => {
               </IconContext.Provider>
             </div>
             <h3 className="text-2xl text-yellow-500 mb-5">Nominations</h3>
-            {noms.length ? (
+            {!nomsAnime ? (
               <CSSTransitionGroup
                 className="flex flex-col h-9/10"
                 transitionName="noms"
