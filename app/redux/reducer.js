@@ -72,6 +72,8 @@ export const getNoms = () => async dispatch => {
     const nominations = JSON.parse(localStorage.getItem('nominations'))
     if (nominations) {
       dispatch(setNoms(nominations))
+    } else {
+      dispatch(setNoms([]))
     }
   } catch (error) {
     console.error(error)
