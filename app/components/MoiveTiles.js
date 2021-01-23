@@ -33,18 +33,18 @@ const MovieTiles = ({ movies, add, noms, remove }) => {
         transitionLeave={false}
       >
         {movies.map((movie) => (
-          <div key={movie.imdbID} className="relative w-52 m-5 zoom">
-            <img className="h-80" src={movie.Poster} onError={imgError} />
+          <div key={movie.imdbID} className="relative w-1/2 md:w-52 md:zoom md:m-5">
+            <img className="h-auto w-full" src={movie.Poster} onError={imgError} />
             <div className="absolute inset-0 h-full w-full opacity-0 hover:opacity-100">
-              <div className="absolute bottom-0 h-1/3 w-full bg-black bg-opacity-80 px-2 flex flex-col justify-evenly items-center text-center">
-                <h3 className="my-1 text-sm">
+              <div className="absolute bottom-0 h-1/2 md:h-1/3 w-full bg-black bg-opacity-80 px-2 flex flex-col justify-evenly items-center text-center text-sm">
+                <h3 className="my-1">
                   {movie.Title} ({movie.Year})
                 </h3>
                 <div className="flex items-center">
                   <button
                     onClick={() => add(movie)}
                     disabled={disableButton(movie)}
-                    className="text-sm p-1 border border-grey-100 rounded hover:bg-yellow-500 hover:text-black focus:outline-none disabled:bg-grey-500 disabled:text-grey-100 transition duration-500 ease-in-out"
+                    className="p-1 border border-grey-100 rounded hover:bg-yellow-500 hover:text-black focus:outline-none disabled:bg-grey-500 disabled:text-grey-100 transition duration-500 ease-in-out"
                   >
                     {nominated(movie) ? 'Nominated!' : 'Nominate'}
                   </button>

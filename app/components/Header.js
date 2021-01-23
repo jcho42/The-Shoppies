@@ -14,7 +14,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
   }, []);
 
   return (
-    <div className="p-5 md:px-20 bg-black bg-opacity-90 sticky top-0 flex flex-wrap justify-between items-center z-20">
+    <div className="p-3 md:px-20 bg-black bg-opacity-90 sticky top-0 flex flex-wrap justify-between items-center z-20">
       <div>
         <div className="flex items-center">
           <div className="p-2">
@@ -24,9 +24,9 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
               </div>
             </IconContext.Provider>
           </div>
-          <h2 className="text-yellow-500 text-2xl">The Shoppies</h2>
+          <h2 className="text-yellow-500 text-lg md:text-2xl">The Shoppies</h2>
         </div>
-        <p>Choose 5 movies to nominate for the Shoppie award</p>
+        <p className="text-sm md:text-lg">Choose 5 movies to nominate for the Shoppie award</p>
       </div>
       <div className="flex mt-5">
         <div className="flex">
