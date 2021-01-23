@@ -14,7 +14,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
   }, []);
 
   return (
-    <div className="p-5 px-20 bg-black bg-opacity-90 sticky top-0 flex justify-between items-center z-20">
+    <div className="p-5 md:px-20 bg-black bg-opacity-90 sticky top-0 flex flex-wrap justify-between items-center z-20">
       <div>
         <div className="flex items-center">
           <div className="p-2">
@@ -28,8 +28,8 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
         </div>
         <p>Choose 5 movies to nominate for the Shoppie award</p>
       </div>
-      <div className="flex">
-        <div className="flex item">
+      <div className="flex mt-5">
+        <div className="flex">
           <div className="border border-grey-100 bg-grey-900 border-r-0 p-1">
             <IconContext.Provider value={{ color: '#F3F4F6', size: 25 }}>
               <label htmlFor="searchbar" className="cursor-pointer">
@@ -43,7 +43,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
             value={searchValue}
             onChange={(evt) => update(evt.target.value)}
             placeholder="Search Movie Title"
-            className="bg-grey-900 border-gray-100 border border-l-0 border-r-0 focus:outline-none text-sm p-1 w-52"
+            className="bg-grey-900 border-gray-100 border border-l-0 border-r-0 focus:outline-none text-sm p-1 md:w-52"
           />
           <div
             onClick={clear}
@@ -63,7 +63,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
           <span className="text-2xl">
             <BiCameraMovie />
           </span>
-          <span className="mx-2">Nominations List</span>
+          <span className="mx-2 hidden md:inline">Nominations List</span>
           <span className={`bg-yellow-500 py-0.5 px-2 text-sm rounded-2xl text-black font-bold border-2 border-grey-100 ${isInitial.current && "opacity-0"}`}>
             {noms.length}
           </span>
