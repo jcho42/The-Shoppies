@@ -36,8 +36,8 @@ const MovieTiles = ({ movies, add, noms, remove }) => {
           <div key={movie.imdbID} className="relative w-1/2 md:w-52 zoom md:m-5">
             <img className="h-auto w-full" src={movie.Poster} onError={imgError} />
             <div className="absolute inset-0 h-full w-full opacity-0 hover:opacity-100">
-              <div className="absolute bottom-0 h-1/2 md:h-1/3 w-full bg-black bg-opacity-80 px-2 flex flex-col justify-evenly items-center text-center text-sm">
-                <h3 className="my-1">
+              <div className="absolute bottom-0 py-2 h-auto w-full bg-black bg-opacity-80 px-2 flex flex-col justify-evenly items-center text-center text-sm">
+                <h3 className="mb-1">
                   {movie.Title} ({movie.Year})
                 </h3>
                 <div className="flex items-center">
