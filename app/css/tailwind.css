@@ -82,8 +82,10 @@
   @apply transition transform ease-in-out duration-500;
 }
 
-.zoom:hover {
-  @apply scale-110;
+@screen md {
+  .zoom:hover {
+    @apply scale-110;
+  }
 }
 
 /* Noms transitions */
