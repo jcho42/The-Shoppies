@@ -38,7 +38,7 @@ const Banner = ({ toggle, noms, showBanner }) => {
         transitionLeaveTimeout={500}
       >
         {showBanner && (
-          <div className="absolute h-1/2 md:h-1/3 top-0 w-full bg-black bg-opacity-90 py-5 px-5 md:px-40 flex justify-between">
+          <div className="absolute h-auto top-0 w-full bg-black bg-opacity-90 py-5 px-5 md:px-40 flex justify-between">
             <div>
               <h3 className="text-2xl mb-5">Congratulations!</h3>
               <p className="text-xl text-yellow-500 mb-2">
