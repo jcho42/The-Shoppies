@@ -21,6 +21,9 @@ module.exports = {
       zIndex: {
         '-10': '-10',
        },
+       fontSize: {
+        base: ['16px', '24px']
+      }
     },
   },
   variants: {

@@ -43,7 +43,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
             value={searchValue}
             onChange={(evt) => update(evt.target.value)}
             placeholder="Search Movie Title"
-            className="bg-grey-900 focus:outline-none text-sm md:w-52 pl-3"
+            className="bg-grey-900 focus:outline-none md:w-52 pl-3 text-base"
           />
           <div
             onClick={clear}
@@ -62,7 +62,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
           <span className="text-2xl">
             <BiCameraMovie />
           </span>
-          <span className="mx-2 hidden md:inline text-sm">Nominations List</span>
+          <span className="mx-2 hidden md:inline">Nominations List</span>
           <span className={`bg-yellow-500 py-0.5 px-2 text-sm rounded-2xl text-black font-bold border-2 border-grey-100 ${isInitial.current && "opacity-0"}`}>
             {noms.length}
           </span>
