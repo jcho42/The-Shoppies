@@ -43,7 +43,7 @@ const Header = ({ searchValue, update, toggle, clear, noms }) => {
             value={searchValue}
             onChange={(evt) => update(evt.target.value)}
             placeholder="Search Movie Title"
-            className="bg-grey-900 focus:outline-none md:w-52 pl-3 text-base"
+            className="bg-grey-900 focus:outline-none w-full md:w-52 pl-3 text-base"
           />
           <div
             onClick={clear}
